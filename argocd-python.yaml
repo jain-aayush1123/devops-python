@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: python-manifests
+    path: python-manifest
     repoURL: https://github.com/jain-aayush1123/devops-python
     targetRevision: HEAD
   syncPolicy: {}
