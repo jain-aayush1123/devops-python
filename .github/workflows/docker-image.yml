@@ -18,8 +18,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker meta
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: awsm1123/hello-python
+          tag-custom: latest
+          tag-semver: |
+            {{raw}}
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: awsm1123/hello-python:latest
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
